@@ -1,0 +1,16 @@
+import styled from "styled-components";
+
+export const DefaultLayoutContainer = styled.div`
+  max-width: 70rem;
+  height: calc(100vh - 10rem);
+  margin: 5rem auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+
+  background-color: ${({ theme }) => theme.COLORS.GRAY_800};
+
+  border-radius: 8px;
+`;
