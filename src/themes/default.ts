@@ -27,9 +27,13 @@ export const defaultTheme = {
   FONT_SIZE: {
     XSM: 0.75,
     SM: 0.875,
-    MD: 0.9375,
+    MD: 1,
     LG: 1.125,
     XLG: 1.5,
     XXLG: 10,
+  },
+  FONT_WEIGHT: {
+    REGULAR: 400,
+    BOLD: 700,
   },
 };
