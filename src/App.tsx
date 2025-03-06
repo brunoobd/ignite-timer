@@ -3,8 +3,7 @@ import { BrowserRouter } from "react-router";
 
 import { defaultTheme } from "@themes";
 import { GlobalStyle } from "@styles";
-
-import { Router } from "./Router";
+import { Router } from "@routes";
 
 export const App = () => {
   return (
