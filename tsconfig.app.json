@@ -24,6 +24,9 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true,
     "paths": {
+      "@assets": [
+        "./src/assets"
+      ],
       "@pages": [
         "./src/pages"
       ],

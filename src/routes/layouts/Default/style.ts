@@ -6,8 +6,8 @@ export const DefaultLayoutContainer = styled.div`
   margin: 5rem auto;
 
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
   gap: 1rem;
 
   background-color: ${({ theme }) => theme.COLORS.GRAY_800};
