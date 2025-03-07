@@ -10,6 +10,7 @@ import {
   TableBodyRow,
   TableContainer,
   TableHeader,
+  TableHeaderRow,
   TableHeaderCell,
   Title,
 } from "./styles";
@@ -68,10 +69,12 @@ export const History = () => {
       <TableContainer>
         <Table>
           <TableHeader>
-            <TableHeaderCell>Tarefa</TableHeaderCell>
-            <TableHeaderCell>Duração</TableHeaderCell>
-            <TableHeaderCell>Início</TableHeaderCell>
-            <TableHeaderCell>Status</TableHeaderCell>
+            <TableHeaderRow>
+              <TableHeaderCell>Tarefa</TableHeaderCell>
+              <TableHeaderCell>Duração</TableHeaderCell>
+              <TableHeaderCell>Início</TableHeaderCell>
+              <TableHeaderCell>Status</TableHeaderCell>
+            </TableHeaderRow>
           </TableHeader>
 
           <TableBody>

@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 
 type StatusIndicatorProps = {
-  backgroundColor: string;
+  $backgroundColor: string;
 };
 
 export const StatusContainer = styled.div`
@@ -16,7 +16,7 @@ export const StatusIndicator = styled.div<StatusIndicatorProps>`
 
   border-radius: 100%;
 
-  background-color: ${({ backgroundColor }) => backgroundColor};
+  background-color: ${({ $backgroundColor }) => $backgroundColor};
 `;
 
 export const StatusTitle = styled.p`

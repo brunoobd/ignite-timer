@@ -29,9 +29,9 @@ export const Button = ({ variant = "success", ...props }: Props) => {
 
   return (
     <ButtonContainer
-      color={buttonContainerCustomStyle[variant].color}
-      backgroundColor={buttonContainerCustomStyle[variant].backgroundColor}
-      hoverBackgroundColor={
+      $color={buttonContainerCustomStyle[variant].color}
+      $backgroundColor={buttonContainerCustomStyle[variant].backgroundColor}
+      $hoverBackgroundColor={
         buttonContainerCustomStyle[variant].hoverBackgroundColor
       }
       {...props}

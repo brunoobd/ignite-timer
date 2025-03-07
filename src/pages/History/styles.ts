@@ -2,7 +2,8 @@ import styled, { css } from "styled-components";
 
 export const HistoryContainer = styled.div`
   width: 100%;
-  padding: 0 6rem 3rem 6rem;
+  max-width: 58.125rem;
+  padding: 0 2rem 2rem 2rem;
 
   display: flex;
   flex-direction: column;
@@ -26,11 +27,11 @@ export const TableContainer = styled.div`
 
 export const Table = styled.table`
   width: 100%;
-  min-width: 600px;
+  min-width: 54.125rem;
   border-collapse: collapse;
 `;
 
-export const TableHeader = styled.tr`
+export const TableHeader = styled.thead`
   text-align: left;
 
   ${({ theme }) => css`
@@ -39,6 +40,8 @@ export const TableHeader = styled.tr`
     background-color: ${theme.COLORS.GRAY_600};
   `}
 `;
+
+export const TableHeaderRow = styled.tr``;
 
 export const TableHeaderCell = styled.th`
   padding: 1rem 0;

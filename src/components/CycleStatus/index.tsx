@@ -29,7 +29,7 @@ export const CycleStatus = ({ status }: Props) => {
   return (
     <StatusContainer>
       <StatusIndicator
-        backgroundColor={statusIndicatorStyle[status].backgroundColor}
+        $backgroundColor={statusIndicatorStyle[status].backgroundColor}
       />
       <StatusTitle>{statusIndicatorStyle[status].title}</StatusTitle>
     </StatusContainer>

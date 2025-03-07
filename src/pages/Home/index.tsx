@@ -1,3 +1,7 @@
+import { Controller, useForm } from "react-hook-form";
+
+import { Button, Countdown } from "@components";
+
 import {
   HomeContainer,
   InputContainer,
@@ -5,26 +9,51 @@ import {
   TaskInput,
   TimeInput,
 } from "./styles";
-import { Button, Countdown } from "@components";
 
 export const Home = () => {
+  const { control, watch } = useForm();
+  const taskInputId = "task-input";
+  const timeInputId = "time-input";
+
+  const taskInput = watch("task");
+
+  console.log(taskInput);
+
   return (
     <HomeContainer>
       <InputContainer>
-        <InputLabel>Vou trabalhar em</InputLabel>
-        <TaskInput
-          options={[
-            {
-              label: "Trabalhar no Design System",
-              value: "Trabalhar no Design System",
-            },
-          ]}
-          placeholder={"Dê um nome para o seu projeto"}
-          isClearable
+        <InputLabel htmlFor={taskInputId}>Vou trabalhar em</InputLabel>
+        <Controller
+          name={"task"}
+          control={control}
+          render={({ field: { value } }) => (
+            <TaskInput
+              inputId={taskInputId}
+              value={value}
+              options={[]}
+              placeholder={"Dê um nome para o seu projeto"}
+              isClearable
+            />
+          )}
         />
 
-        <InputLabel>dentro</InputLabel>
-        <TimeInput placeholder={"00"} step={5} min={5} max={60} />
+        <InputLabel htmlFor={timeInputId}>durante</InputLabel>
+        <Controller
+          name={"time"}
+          control={control}
+          render={({ field: { value } }) => (
+            <TimeInput
+              id={timeInputId}
+              value={value}
+              placeholder={"00"}
+              step={5}
+              min={5}
+              max={60}
+            />
+          )}
+        />
+
+        <InputLabel>minutos.</InputLabel>
       </InputContainer>
 
       <Countdown />

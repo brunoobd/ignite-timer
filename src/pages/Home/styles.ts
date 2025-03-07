@@ -2,6 +2,8 @@ import Select from "react-select";
 import styled, { css } from "styled-components";
 
 export const HomeContainer = styled.form`
+  padding: 0 2rem 2rem 2rem;
+
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -10,9 +12,10 @@ export const HomeContainer = styled.form`
 `;
 
 export const InputContainer = styled.div`
+  width: 100%;
+
   display: flex;
   align-items: center;
-  justify-content: center;
   gap: 0.5rem;
 `;
 
@@ -27,11 +30,13 @@ export const InputLabel = styled.label`
 
 export const TaskInput = styled(Select).attrs(({ theme }) => ({
   styles: {
+    container: (baseStyles) => ({
+      ...baseStyles,
+      width: "17.5rem",
+    }),
     control: (baseStyles, state) => ({
       ...baseStyles,
-      flex: 1,
-      width: "17.5rem",
-      padding: "0.5rem 0.6875rem",
+      padding: "0.6875rem 0.5rem",
 
       backgroundColor: "transparent",
       boxShadow: "none !important",

@@ -2,9 +2,9 @@ import { HandPalm, Play } from "@phosphor-icons/react";
 import styled, { css } from "styled-components";
 
 type ButtonContainerProps = {
-  color: string;
-  backgroundColor: string;
-  hoverBackgroundColor: string;
+  $color: string;
+  $backgroundColor: string;
+  $hoverBackgroundColor: string;
 };
 
 export const ButtonContainer = styled.button<ButtonContainerProps>`
@@ -22,16 +22,16 @@ export const ButtonContainer = styled.button<ButtonContainerProps>`
 
   transition-duration: 0.2s;
 
-  ${({ theme, color, backgroundColor, hoverBackgroundColor }) => css`
-    background-color: ${backgroundColor};
+  ${({ theme, $color, $backgroundColor, $hoverBackgroundColor }) => css`
+    background-color: ${$backgroundColor};
 
     font-weight: ${theme.FONT_WEIGHT.BOLD};
 
-    color: ${color};
+    color: ${$color};
 
     &:not(:disabled):hover {
       cursor: pointer;
-      background-color: ${hoverBackgroundColor};
+      background-color: ${$hoverBackgroundColor};
     }
 
     &:disabled {
