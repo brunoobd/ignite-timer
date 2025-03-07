@@ -1,24 +1,10 @@
 import { HandPalm, Play } from "@phosphor-icons/react";
-import { defaultTheme } from "@themes";
 import styled, { css } from "styled-components";
 
-export type ButtonContainerVariant = "success" | "danger";
-
 type ButtonContainerProps = {
-  $variant: ButtonContainerVariant;
-};
-
-const buttonContainerStyle = {
-  success: {
-    backgroundColor: defaultTheme.COLORS.GREEN_500,
-    color: defaultTheme.COLORS.GRAY_100,
-    hoverBackgroundColor: defaultTheme.COLORS.GREEN_700,
-  },
-  danger: {
-    backgroundColor: defaultTheme.COLORS.RED_500,
-    color: defaultTheme.COLORS.WHITE,
-    hoverBackgroundColor: defaultTheme.COLORS.RED_700,
-  },
+  color: string;
+  backgroundColor: string;
+  hoverBackgroundColor: string;
 };
 
 export const ButtonContainer = styled.button<ButtonContainerProps>`
@@ -36,16 +22,16 @@ export const ButtonContainer = styled.button<ButtonContainerProps>`
 
   transition-duration: 0.2s;
 
-  ${({ theme, $variant }) => css`
-    background-color: ${buttonContainerStyle[$variant].backgroundColor};
+  ${({ theme, color, backgroundColor, hoverBackgroundColor }) => css`
+    background-color: ${backgroundColor};
 
     font-weight: ${theme.FONT_WEIGHT.BOLD};
 
-    color: ${buttonContainerStyle[$variant].color};
+    color: ${color};
 
     &:not(:disabled):hover {
       cursor: pointer;
-      background-color: ${buttonContainerStyle[$variant].hoverBackgroundColor};
+      background-color: ${hoverBackgroundColor};
     }
 
     &:disabled {
