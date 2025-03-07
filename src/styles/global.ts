@@ -14,11 +14,9 @@ export const GlobalStyle = createGlobalStyle`
 
   body {
     padding: 0 1rem;
+    
+    background: ${({ theme }) => theme.COLORS.GRAY_900};
 
-    ${({ theme }) => css`
-      background: ${theme.COLORS.GRAY_900};
-      color: ${theme.COLORS.GRAY_300};
-    `}
     -webkit-font-smoothing: antialiased;
   }
 
@@ -26,7 +24,9 @@ export const GlobalStyle = createGlobalStyle`
     ${({ theme }) => css`
       font-family: ${theme.FONT_FAMILY.DEFAULT}, sans-serif;
       font-weight: ${theme.FONT_WEIGHT.REGULAR};
-      font-size: ${theme.FONT_SIZE.MD};
+      font-size: ${theme.FONT_SIZE.MD}rem;
+
+      color: ${theme.COLORS.GRAY_100};
     `}
   }
 `;
