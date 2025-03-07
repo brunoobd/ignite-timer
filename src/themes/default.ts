@@ -25,12 +25,12 @@ export const defaultTheme = {
     MONO: "Roboto Mono",
   },
   FONT_SIZE: {
-    XSM: 0.75,
-    SM: 0.875,
-    MD: 1,
-    LG: 1.125,
-    XLG: 1.5,
-    XXLG: 10,
+    XSM: "0.75rem",
+    SM: "0.875rem",
+    MD: "1rem",
+    LG: "1.125rem",
+    XLG: "1.5rem",
+    XXLG: "10rem",
   },
   FONT_WEIGHT: {
     REGULAR: 400,

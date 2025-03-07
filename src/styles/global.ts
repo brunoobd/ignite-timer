@@ -7,7 +7,7 @@ export const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
   }
 
-  :focus-visible {
+  :focus-visible:not(input) {
     outline: none;
     box-shadow: 0 0 0 2px ${({ theme }) => theme.COLORS.GREEN_500};
   }
@@ -24,7 +24,7 @@ export const GlobalStyle = createGlobalStyle`
     ${({ theme }) => css`
       font-family: ${theme.FONT_FAMILY.DEFAULT}, sans-serif;
       font-weight: ${theme.FONT_WEIGHT.REGULAR};
-      font-size: ${theme.FONT_SIZE.MD}rem;
+      font-size: ${theme.FONT_SIZE.MD};
 
       color: ${theme.COLORS.GRAY_100};
     `}

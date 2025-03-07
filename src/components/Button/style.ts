@@ -5,7 +5,7 @@ import styled, { css } from "styled-components";
 export type ButtonContainerVariant = "success" | "danger";
 
 type ButtonContainerProps = {
-  variant: ButtonContainerVariant;
+  $variant: ButtonContainerVariant;
 };
 
 const buttonContainerStyle = {
@@ -36,16 +36,16 @@ export const ButtonContainer = styled.button<ButtonContainerProps>`
 
   transition-duration: 0.2s;
 
-  ${({ theme, variant }) => css`
-    background-color: ${buttonContainerStyle[variant].backgroundColor};
+  ${({ theme, $variant }) => css`
+    background-color: ${buttonContainerStyle[$variant].backgroundColor};
 
     font-weight: ${theme.FONT_WEIGHT.BOLD};
 
-    color: ${buttonContainerStyle[variant].color};
+    color: ${buttonContainerStyle[$variant].color};
 
     &:not(:disabled):hover {
       cursor: pointer;
-      background-color: ${buttonContainerStyle[variant].hoverBackgroundColor};
+      background-color: ${buttonContainerStyle[$variant].hoverBackgroundColor};
     }
 
     &:disabled {

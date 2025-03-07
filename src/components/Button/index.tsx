@@ -12,7 +12,7 @@ type Props = ButtonHTMLAttributes<HTMLButtonElement> & {
 };
 
 export const Button = ({ variant = "success", ...props }: Props) => (
-  <ButtonContainer variant={variant} {...props}>
+  <ButtonContainer $variant={variant} {...props}>
     {variant === "success" ? (
       <>
         <PlayIcon />
