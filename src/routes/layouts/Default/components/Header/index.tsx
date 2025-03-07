@@ -7,16 +7,18 @@ import {
   ScrollIcon,
 } from "./styles";
 
+import { homePath, historyPath } from "@constants";
+
 export const Header = () => (
   <HeaderContainer>
     <Logo />
 
     <Navigation>
-      <NavigationItem to="/">
+      <NavigationItem to={homePath}>
         <TimerIcon />
       </NavigationItem>
 
-      <NavigationItem to="/history">
+      <NavigationItem to={historyPath}>
         <ScrollIcon />
       </NavigationItem>
     </Navigation>

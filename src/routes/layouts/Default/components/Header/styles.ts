@@ -28,9 +28,9 @@ export const Navigation = styled.nav`
 export const NavigationItem = styled(NavLink)`
   padding: 0.1875rem 0.3125rem;
 
-  color: ${({ theme }) => theme.COLORS.GRAY_100};
-
   border-bottom: 0.1875rem solid transparent;
+
+  color: ${({ theme }) => theme.COLORS.GRAY_100};
 
   transition-duration: 0.1s;
 
