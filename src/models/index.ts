@@ -1,2 +1,2 @@
 export type { Task } from "./Task";
-export type { Timer, TimerStatus } from "./Timer";
+export type { Cycle, CycleStatus } from "./Cycle";

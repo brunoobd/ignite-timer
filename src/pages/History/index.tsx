@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { Timer } from "@models";
+import { Cycle } from "@models";
 
 import {
   HistoryContainer,
@@ -13,10 +13,10 @@ import {
   TableHeaderCell,
   Title,
 } from "./styles";
-import { TimerStatus } from "@components";
+import { CycleStatus } from "@components";
 
 export const History = () => {
-  const [timers] = useState<Timer[]>([
+  const [cycles] = useState<Cycle[]>([
     {
       id: 1,
       task: { id: 1, title: "Estudar React" },
@@ -75,13 +75,13 @@ export const History = () => {
           </TableHeader>
 
           <TableBody>
-            {timers.map(({ id, task, duration, startDate, status }) => (
+            {cycles.map(({ id, task, duration, startDate, status }) => (
               <TableBodyRow key={id}>
                 <TableBodyCell>{task.title}</TableBodyCell>
                 <TableBodyCell>{duration} minutos</TableBodyCell>
                 <TableBodyCell>{startDate.toISOString()}</TableBodyCell>
                 <TableBodyCell>
-                  <TimerStatus status={status} />
+                  <CycleStatus status={status} />
                 </TableBodyCell>
               </TableBodyRow>
             ))}

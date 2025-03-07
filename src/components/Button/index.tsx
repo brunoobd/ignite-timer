@@ -3,13 +3,18 @@ import { ButtonHTMLAttributes } from "react";
 import { ButtonContainer, HandPalmIcon, PlayIcon } from "./style";
 import { useTheme } from "styled-components";
 
+type ButtonVariant = "success" | "danger";
+
 type Props = ButtonHTMLAttributes<HTMLButtonElement> & {
-  variant?: "success" | "danger";
+  variant?: ButtonVariant;
 };
 
 export const Button = ({ variant = "success", ...props }: Props) => {
   const { COLORS } = useTheme();
-  const buttonContainerCustomStyle = {
+  const buttonContainerCustomStyle: Record<
+    ButtonVariant,
+    { color: string; backgroundColor: string; hoverBackgroundColor: string }
+  > = {
     success: {
       backgroundColor: COLORS.GREEN_500,
       color: COLORS.GRAY_100,

@@ -1,15 +1,15 @@
-import { TimerStatus as TimerStatusType } from "@models";
-import { StatusContainer, StatusIndicator, StatusTitle } from "./style";
 import { useTheme } from "styled-components";
+import { CycleStatus as CycleStatusType } from "@models";
+import { StatusContainer, StatusIndicator, StatusTitle } from "./style";
 
 type Props = {
-  status: TimerStatusType;
+  status: CycleStatusType;
 };
 
-export const TimerStatus = ({ status }: Props) => {
+export const CycleStatus = ({ status }: Props) => {
   const { YELLOW_500, GREEN_300, RED_500 } = useTheme().COLORS;
   const statusIndicatorStyle: Record<
-    TimerStatusType,
+    CycleStatusType,
     { title: string; backgroundColor: string }
   > = {
     inProgress: {
