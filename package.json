@@ -3,6 +3,10 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "prettier": {
+    "bracketSameLine": true,
+    "printWidth": 100
+  },
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
@@ -13,7 +17,6 @@
     "@phosphor-icons/react": "^2.1.7",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-hook-form": "^7.54.2",
     "react-router": "^7.3.0",
     "react-select": "^5.10.1",
     "styled-components": "^6.1.15"
