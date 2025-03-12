@@ -64,6 +64,8 @@ export const TaskInput = styled(Select).attrs(({ theme }) => ({
       margin: 0,
       padding: 0,
 
+      visibility: "visible",
+
       color: theme.COLORS.GRAY_100,
     }),
     indicatorsContainer: () => ({
@@ -108,7 +110,7 @@ export const TaskInput = styled(Select).attrs(({ theme }) => ({
   },
 }))``;
 
-export const TimeInput = styled.input.attrs(() => ({
+export const DurationInput = styled.input.attrs(() => ({
   type: "number",
 }))`
   max-width: 4.5rem;

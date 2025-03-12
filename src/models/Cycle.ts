@@ -4,7 +4,7 @@ export type CycleStatus = "inProgress" | "completed" | "interrupted";
 
 export type Cycle = {
   id: number;
-  task: Task;
+  taskId: Task["id"];
   duration: number;
   startDate: Date;
   status: CycleStatus;
