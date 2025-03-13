@@ -1,3 +1,6 @@
+import { formatDistanceToNow } from "date-fns";
+import { ptBR } from "date-fns/locale";
+
 import {
   HistoryContainer,
   Table,
@@ -10,7 +13,9 @@ import {
   TableHeaderCell,
   Title,
 } from "./styles";
+
 import { CycleStatus } from "@components";
+
 import { useCycles, useTasks } from "@hooks";
 
 export const History = () => {
@@ -40,7 +45,12 @@ export const History = () => {
                 <TableBodyRow key={id}>
                   <TableBodyCell>{task?.title}</TableBodyCell>
                   <TableBodyCell>{duration} minutos</TableBodyCell>
-                  <TableBodyCell>{startDate.toISOString()}</TableBodyCell>
+                  <TableBodyCell>
+                    {formatDistanceToNow(startDate, {
+                      addSuffix: true,
+                      locale: ptBR,
+                    })}
+                  </TableBodyCell>
                   <TableBodyCell>
                     <CycleStatus status={status} />
                   </TableBodyCell>

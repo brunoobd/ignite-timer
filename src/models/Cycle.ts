@@ -1,10 +1,19 @@
-import { Task } from "./Task";
+import { TaskId } from "@models";
 
-export type CycleStatus = "inProgress" | "completed" | "interrupted";
+export enum CycleStatusEnum {
+  InProgress = "inProgress",
+  Completed = "completed",
+  Interrupted = "interrupted",
+}
+
+export type CycleStatus =
+  | CycleStatusEnum.InProgress
+  | CycleStatusEnum.Completed
+  | CycleStatusEnum.Interrupted;
 
 export type Cycle = {
   id: number;
-  taskId: Task["id"];
+  taskId: TaskId;
   duration: number;
   startDate: Date;
   status: CycleStatus;

@@ -4,6 +4,7 @@ import { Button, Countdown } from "@components";
 
 import { HomeContainer, InputContainer, InputLabel, TaskInput, DurationInput } from "./styles";
 import { useCycles, useTasks } from "@hooks";
+import { CycleStatusEnum } from "@models";
 
 type Option = {
   label: string;
@@ -39,12 +40,12 @@ export const Home = () => {
 
   const handleCompleteCycle = () => {
     resetFormFields();
-    updateInProgressCycleStatus("completed");
+    updateInProgressCycleStatus(CycleStatusEnum.Completed);
   };
 
   const handleInterruptCycle = () => {
     resetFormFields();
-    updateInProgressCycleStatus("interrupted");
+    updateInProgressCycleStatus(CycleStatusEnum.Interrupted);
   };
 
   const handleSubmit = (event: FormEvent) => {
@@ -67,7 +68,7 @@ export const Home = () => {
       return alert("Algo deu errado ao definir a duração do ciclo.");
     }
 
-    createNewCycle(taskId, durationInputValue);
+    createNewCycle({ taskId, duration: durationInputValue });
   };
 
   return (

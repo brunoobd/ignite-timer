@@ -1,2 +1,5 @@
-export { TasksContext, TasksContextProvider } from "./TasksContext";
-export { CyclesContext, CyclesContextProvider } from "./CyclesContext";
+export { TasksContext } from "./Tasks";
+export { TasksContextProvider } from "./Tasks/TasksContextProvider";
+
+export { CyclesContext } from "./Cycles";
+export { CyclesContextProvider } from "./Cycles/CyclesContextProvider";
