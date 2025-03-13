@@ -54,6 +54,9 @@
       "@routes/*": [
         "./src/routes/*"
       ],
+      "@storage/*": [
+        "./src/storage/*"
+      ],
       "@styles": [
         "./src/styles"
       ],
