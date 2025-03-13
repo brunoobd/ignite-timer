@@ -1,37 +1,28 @@
+import { FormEvent, useState } from "react";
+
 import { Button, Countdown } from "@components";
 
 import { HomeContainer, InputContainer, InputLabel, TaskInput, DurationInput } from "./styles";
-import { FormEvent, useState } from "react";
-import { Cycle, CycleStatus, Task } from "@models";
-import { getNextId } from "@utils";
+import { useCycles, useTasks } from "@hooks";
 
 type Option = {
   label: string;
   value: string;
 };
 
-type TaskId = Task["id"];
-
 export const Home = () => {
+  const { tasks, createNewTask } = useTasks();
+  const { hasCycleInProgress, createNewCycle, updateInProgressCycleStatus } = useCycles();
+
   const [taskInputValue, setTaskInputValue] = useState("");
   const [taskInputSelectedOption, setTaskInputSelectedOption] = useState<Option | null>(null);
   const [durationInputValue, setDurationInputValue] = useState<number>(0);
-  const [tasks, setTasks] = useState<Task[]>([
-    { id: 1, title: "Estudar React" },
-    { id: 2, title: "Revisar código" },
-    { id: 3, title: "Implementar API" },
-    { id: 4, title: "Debugar erro" },
-    { id: 5, title: "Refatorar componente" },
-    { id: 6, title: "Testar integração" },
-    { id: 7, title: "Otimizar performance" },
-  ]);
-  const [cycles, setCycles] = useState<Cycle[]>([]);
+
   const options = tasks.map(({ id, title }) => ({
     label: title,
     value: String(id),
   }));
-  const cycleInProgress = cycles.find((cycle) => cycle.status === "inProgress");
-  const hasCycleInProgress = !!cycleInProgress;
+
   const isValidDuration = durationInputValue && durationInputValue >= 1 && durationInputValue <= 60;
   const isFormValid =
     (!!taskInputValue.trim().length || !!taskInputSelectedOption) && isValidDuration;
@@ -46,37 +37,14 @@ export const Home = () => {
     setDurationInputValue(0);
   };
 
-  const updateCycleStatus = (status: CycleStatus) => {
-    if (hasCycleInProgress) {
-      resetFormFields();
-
-      setCycles((prevState) =>
-        prevState.map(
-          (cycle): Cycle => (cycle.status === "inProgress" ? { ...cycle, status } : cycle)
-        )
-      );
-    }
+  const handleCompleteCycle = () => {
+    resetFormFields();
+    updateInProgressCycleStatus("completed");
   };
 
-  const handleCompleteCycle = () => updateCycleStatus("completed");
-
-  const handleInterruptCycle = () => updateCycleStatus("interrupted");
-
-  const handleCreateNewCycle = (taskId: TaskId, duration: number) => {
-    const newCycleId = getNextId<Cycle>(cycles);
-
-    setCycles((prevState) => [
-      ...prevState,
-      { id: newCycleId, taskId, duration, startDate: new Date(), status: "inProgress" },
-    ]);
-  };
-
-  const handleCreateNewTask = (taskTitle: string): TaskId => {
-    const newTaskId = getNextId<Task>(tasks);
-
-    setTasks((prevState) => [...prevState, { id: newTaskId, title: taskTitle }]);
-
-    return newTaskId;
+  const handleInterruptCycle = () => {
+    resetFormFields();
+    updateInProgressCycleStatus("interrupted");
   };
 
   const handleSubmit = (event: FormEvent) => {
@@ -88,18 +56,18 @@ export const Home = () => {
     let taskId: number | undefined;
 
     if (hasTaskTitle) {
-      taskId = handleCreateNewTask(taskTitle);
+      taskId = createNewTask(taskTitle);
     } else if (hasSelectedOption) {
       taskId = tasks.find((task) => task.id === Number(taskInputSelectedOption.value))?.id;
     }
 
-    if (!taskId) {
+    if (taskId === undefined) {
       return alert("Algo deu errado ao definir uma tarefa para o ciclo.");
     } else if (!durationInputValue) {
       return alert("Algo deu errado ao definir a duração do ciclo.");
     }
 
-    handleCreateNewCycle(taskId, durationInputValue);
+    createNewCycle(taskId, durationInputValue);
   };
 
   return (
@@ -141,7 +109,7 @@ export const Home = () => {
         <InputLabel>minutos.</InputLabel>
       </InputContainer>
 
-      <Countdown cycleInProgress={cycleInProgress} onCompleteCountdown={handleCompleteCycle} />
+      <Countdown onCompleteCountdown={handleCompleteCycle} />
 
       {hasCycleInProgress ? (
         <Button

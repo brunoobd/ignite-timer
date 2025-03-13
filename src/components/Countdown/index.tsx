@@ -2,15 +2,15 @@ import { useEffect, useState } from "react";
 
 import { CountdownContainer, CountdownNumber, CountdownSeparator } from "./style";
 
-import { Cycle } from "@models";
 import { differenceInSeconds } from "date-fns";
+import { useCycles } from "@hooks";
 
 type Props = {
-  cycleInProgress?: Cycle;
   onCompleteCountdown: VoidFunction;
 };
 
-export const Countdown = ({ cycleInProgress, onCompleteCountdown }: Props) => {
+export const Countdown = ({ onCompleteCountdown }: Props) => {
+  const { cycleInProgress } = useCycles();
   const [elapsedSeconds, setElapsedSeconds] = useState(0);
   const totalSeconds = cycleInProgress ? cycleInProgress.duration * 60 : 0;
   const remainingSeconds = cycleInProgress ? totalSeconds - elapsedSeconds : 0;

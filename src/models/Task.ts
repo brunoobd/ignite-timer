@@ -1,4 +1,6 @@
+export type TaskId = number;
+
 export type Task = {
-  id: number;
+  id: TaskId;
   title: string;
 };

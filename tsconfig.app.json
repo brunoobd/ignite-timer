@@ -33,6 +33,12 @@
       "@constants": [
         "./src/constants"
       ],
+      "@contexts": [
+        "./src/contexts"
+      ],
+      "@hooks": [
+        "./src/hooks"
+      ],
       "@models": [
         "./src/models"
       ],
