@@ -1,7 +1,7 @@
 import { Task } from "@models";
 
 export enum TasksActionTypes {
-  CREATE_TASK = "CREATE_TASK",
+  CreateTask = "CREATE_TASK",
 }
 
-export type TasksAction = { type: TasksActionTypes.CREATE_TASK; payload: Task };
+export type TasksAction = { type: TasksActionTypes.CreateTask; payload: Task };

@@ -1,9 +1,11 @@
+import { RocketLaunch } from "@phosphor-icons/react";
 import styled, { css } from "styled-components";
 
 export const HistoryContainer = styled.div`
   width: 100%;
-  max-width: 58.125rem;
-  padding: 0 2rem 2rem 2rem;
+  max-width: 62.5rem;
+  height: 100%;
+  padding: 0 2rem 4.375rem 2rem;
 
   display: flex;
   flex-direction: column;
@@ -21,6 +23,7 @@ export const Title = styled.h1`
 
 export const TableContainer = styled.div`
   width: 100%;
+  height: 100%;
 
   overflow: auto;
 `;
@@ -28,7 +31,9 @@ export const TableContainer = styled.div`
 export const Table = styled.table`
   width: 100%;
   min-width: 54.125rem;
+
   border-collapse: collapse;
+  border-radius: 8px;
 `;
 
 export const TableHeader = styled.thead`
@@ -64,7 +69,7 @@ export const TableBody = styled.tbody`
     font-size: ${theme.FONT_SIZE.SM};
 
     color: ${theme.COLORS.GRAY_300};
-  `}
+  `};
 `;
 
 export const TableBodyRow = styled.tr`
@@ -86,3 +91,78 @@ export const TableBodyCell = styled.td`
     padding-right: 1.5rem;
   }
 `;
+
+export const TableEmpty = styled.div`
+  width: 100%;
+  min-width: 54.125rem;
+  height: 100%;
+
+  border-collapse: collapse;
+  border-radius: 8px;
+
+  background-color: ${({ theme }) => theme.COLORS.GRAY_700};
+`;
+
+export const TableEmptyHeader = styled.div`
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+
+  background-color: ${({ theme }) => theme.COLORS.GRAY_600};
+
+  border-radius: 8px 8px 0 0;
+`;
+
+export const TableEmptyHeaderCell = styled.div`
+  width: 16.5%;
+  padding: 1rem 0;
+
+  font-weight: ${({ theme }) => theme.FONT_WEIGHT.BOLD};
+  font-size: ${({ theme }) => theme.FONT_SIZE.SM};
+
+  &:first-child {
+    width: 50%;
+    padding-left: 1.5rem;
+  }
+
+  &:last-child {
+    padding-right: 1.5rem;
+  }
+`;
+
+export const TableEmptyContent = styled.div`
+  width: 100%;
+  height: calc(100% - 3.125rem);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const TableEmptyContentCard = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.875rem;
+`;
+
+export const TableEmptyTextContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3125rem;
+`;
+
+export const TableEmptyTitle = styled.p`
+  font-weight: ${({ theme }) => theme.FONT_WEIGHT.BOLD};
+`;
+
+export const TableEmptyDescription = styled.p``;
+
+export const RocketLaunchIcon = styled(RocketLaunch).attrs(({ theme }) => ({
+  size: 75,
+  color: theme.COLORS.GRAY_100,
+}))``;

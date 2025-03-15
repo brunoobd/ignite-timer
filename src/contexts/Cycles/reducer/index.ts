@@ -5,7 +5,7 @@ import { getNextId } from "@utils";
 
 export type CyclesState = Cycle[];
 
-export function cyclesReducer(state: CyclesState, action: CyclesAction): CyclesState {
+export const cyclesReducer = (state: CyclesState, action: CyclesAction): CyclesState => {
   switch (action.type) {
     case CyclesActionEnum.CreateCycle: {
       const { taskId, duration } = action.payload;

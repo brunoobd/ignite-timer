@@ -4,9 +4,9 @@ import { Task } from "@models";
 
 export type TasksState = Task[];
 
-export function tasksReducer(state: TasksState, action: TasksAction): TasksState {
+export const tasksReducer = (state: TasksState, action: TasksAction): TasksState => {
   switch (action.type) {
-    case TasksActionTypes.CREATE_TASK:
+    case TasksActionTypes.CreateTask:
       return [...state, action.payload];
 
     default:
