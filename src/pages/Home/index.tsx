@@ -2,7 +2,17 @@ import { FormEvent, useState } from "react";
 
 import { Button, Countdown } from "@components";
 
-import { HomeContainer, InputContainer, InputLabel, TaskInput, DurationInput } from "./styles";
+import {
+  HomeContainer,
+  InputContainer,
+  InputLabel,
+  TaskInput,
+  DurationInput,
+  DurationInputContainer,
+  PlusIcon,
+  MinusIcon,
+  DurationInputActionItem,
+} from "./styles";
 import { useCycles, useTasks } from "@hooks";
 import { CycleStatusEnum } from "@models";
 
@@ -32,6 +42,12 @@ export const Home = () => {
 
   const noOptionsMessage = () => <p>Sem tarefas com esse nome</p>;
 
+  const handleDurationInputIncrement = () =>
+    setDurationInputValue((prevState) => (prevState < 60 ? prevState + 1 : prevState));
+
+  const handleDurationInputDecrement = () =>
+    setDurationInputValue((prevState) => (prevState > 0 ? prevState - 1 : prevState));
+
   const resetFormFields = () => {
     setTaskInputValue("");
     setTaskInputSelectedOption(null);
@@ -57,7 +73,13 @@ export const Home = () => {
     let taskId: number | undefined;
 
     if (hasTaskTitle) {
-      taskId = createNewTask(taskTitle);
+      const existingTask = tasks.find((task) => task.title === taskTitle);
+
+      if (existingTask) {
+        taskId = existingTask.id;
+      } else {
+        taskId = createNewTask(taskTitle);
+      }
     } else if (hasSelectedOption) {
       taskId = tasks.find((task) => task.id === Number(taskInputSelectedOption.value))?.id;
     }
@@ -96,18 +118,34 @@ export const Home = () => {
         />
 
         <InputLabel htmlFor={durationInputId}>durante</InputLabel>
-        <DurationInput
-          id={durationInputId}
-          value={durationInputValue}
-          onChange={({ target }) => setDurationInputValue(Number(target.value))}
-          placeholder={"00"}
-          min={1}
-          max={60}
-          required
-          disabled={hasCycleInProgress}
-        />
+        <DurationInputContainer>
+          <DurationInputActionItem onClick={handleDurationInputDecrement}>
+            <MinusIcon />
+          </DurationInputActionItem>
 
-        <InputLabel>minutos.</InputLabel>
+          <DurationInput
+            id={durationInputId}
+            value={durationInputValue || ""}
+            onChange={({ target }) => {
+              const newValue = Number(target.value);
+
+              if (newValue >= 0 && newValue <= 60) {
+                setDurationInputValue(Number(target.value));
+              }
+            }}
+            placeholder={"00"}
+            min={1}
+            max={60}
+            required
+            disabled={hasCycleInProgress}
+          />
+
+          <DurationInputActionItem onClick={handleDurationInputIncrement}>
+            <PlusIcon />
+          </DurationInputActionItem>
+        </DurationInputContainer>
+
+        <InputLabel>minuto(s).</InputLabel>
       </InputContainer>
 
       <Countdown onCompleteCountdown={handleCompleteCycle} />

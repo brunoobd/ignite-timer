@@ -1,3 +1,4 @@
+import { Minus, Plus } from "@phosphor-icons/react";
 import Select from "react-select";
 import styled, { css } from "styled-components";
 
@@ -36,7 +37,7 @@ export const TaskInput = styled(Select).attrs(({ theme }) => ({
     }),
     control: (baseStyles, state) => ({
       ...baseStyles,
-      padding: "0.6875rem 0.5rem",
+      padding: "0.625rem 0.5rem",
 
       backgroundColor: "transparent",
       boxShadow: "none !important",
@@ -44,14 +45,16 @@ export const TaskInput = styled(Select).attrs(({ theme }) => ({
       border: "none",
       borderBottom: "0.125rem solid transparent",
       borderBottomColor: `${
-        state.isFocused ? theme.COLORS.GREEN_500 : theme.COLORS.GRAY_500
+        state.isFocused ? theme.COLORS.GRAY_100 : theme.COLORS.GRAY_500
       } !important`,
       borderRadius: "none",
 
       fontWeight: theme.FONT_WEIGHT.BOLD,
       fontSize: theme.FONT_SIZE.LG,
 
-      transitionDuration: "0.4s",
+      transitionDuration: "0.2s",
+
+      cursor: "text",
     }),
     placeholder: (baseStyles) => ({
       ...baseStyles,
@@ -110,27 +113,21 @@ export const TaskInput = styled(Select).attrs(({ theme }) => ({
   },
 }))``;
 
-export const DurationInput = styled.input.attrs(() => ({
-  type: "number",
-}))`
-  max-width: 4.5rem;
-  padding: 0.6875rem 0.5rem;
+export const DurationInputContainer = styled.div`
+  padding: 0.625rem 0.3125rem;
 
-  background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
 
-  transition-duration: 0.4s;
+  transition-duration: 0.2s;
 
   ${({ theme }) => css`
-    border: none;
-    border-top: 2px solid transparent;
     border-bottom: 2px solid ${theme.COLORS.GRAY_500};
 
-    font-weight: ${theme.FONT_WEIGHT.BOLD};
-    font-size: ${theme.FONT_SIZE.LG};
-
-    &:focus {
-      border-bottom-color: ${theme.COLORS.GREEN_700};
-      outline: none;
+    &:has(input:focus) {
+      border-bottom-color: ${theme.COLORS.GRAY_100};
     }
 
     &::placeholder {
@@ -138,3 +135,48 @@ export const DurationInput = styled.input.attrs(() => ({
     }
   `};
 `;
+
+export const DurationInput = styled.input.attrs(() => ({
+  type: "number",
+}))`
+  max-width: 1.3125rem;
+  background-color: transparent;
+
+  border: none;
+  outline: none;
+
+  ${({ theme }) => css`
+    font-weight: ${theme.FONT_WEIGHT.BOLD};
+    font-size: ${theme.FONT_SIZE.LG};
+  `};
+`;
+
+export const DurationInputActionItem = styled.button.attrs(() => ({
+  type: "button",
+}))`
+  display: flex;
+  align-items: center;
+
+  border: none;
+  outline: none;
+
+  background: transparent;
+
+  transition-duration: 0.1s;
+  ${({ theme }) => css`
+    color: ${theme.COLORS.GRAY_500};
+
+    &:hover {
+      color: ${theme.COLORS.GRAY_100};
+      cursor: pointer;
+    }
+  `}
+`;
+
+export const PlusIcon = styled(Plus).attrs(() => ({
+  size: 20,
+}))``;
+
+export const MinusIcon = styled(Minus).attrs(() => ({
+  size: 20,
+}))``;
