@@ -24,8 +24,25 @@ export const Title = styled.h1`
 export const TableContainer = styled.div`
   width: 100%;
   height: 100%;
+  max-height: 28.75rem;
+  padding-right: 10px;
 
   overflow: auto;
+
+  ${({ theme }) => css`
+    &::-webkit-scrollbar {
+      width: 5px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: ${theme.COLORS.GRAY_600};
+      border-radius: 100px;
+    }
+  `}
 `;
 
 export const Table = styled.table`

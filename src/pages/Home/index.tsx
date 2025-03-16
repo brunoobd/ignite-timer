@@ -22,12 +22,29 @@ type Option = {
 };
 
 export const Home = () => {
-  const { tasks, createNewTask } = useTasks();
-  const { hasCycleInProgress, createNewCycle, updateInProgressCycleStatus } = useCycles();
+  const { tasks, getTaskById, createNewTask } = useTasks();
+  const { cycleInProgress, createNewCycle, updateInProgressCycleStatus } = useCycles();
+  const hasCycleInProgress = !!cycleInProgress;
 
-  const [taskInputValue, setTaskInputValue] = useState("");
+  const [taskInputValue, setTaskInputValue] = useState((): string => {
+    if (hasCycleInProgress) {
+      const taskFromCycle = getTaskById(cycleInProgress.taskId);
+
+      if (taskFromCycle) {
+        return taskFromCycle.title;
+      }
+    }
+
+    return "";
+  });
   const [taskInputSelectedOption, setTaskInputSelectedOption] = useState<Option | null>(null);
-  const [durationInputValue, setDurationInputValue] = useState<number>(0);
+  const [durationInputValue, setDurationInputValue] = useState<number>((): number => {
+    if (hasCycleInProgress) {
+      return cycleInProgress.duration;
+    }
+
+    return 0;
+  });
 
   const options = tasks.map(({ id, title }) => ({
     label: title,
@@ -42,11 +59,13 @@ export const Home = () => {
 
   const noOptionsMessage = () => <p>Sem tarefas com esse nome</p>;
 
-  const handleDurationInputIncrement = () =>
+  const handleDurationInputIncrement = () => {
     setDurationInputValue((prevState) => (prevState < 60 ? prevState + 1 : prevState));
+  };
 
-  const handleDurationInputDecrement = () =>
+  const handleDurationInputDecrement = () => {
     setDurationInputValue((prevState) => (prevState > 0 ? prevState - 1 : prevState));
+  };
 
   const resetFormFields = () => {
     setTaskInputValue("");

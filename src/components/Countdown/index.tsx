@@ -11,7 +11,13 @@ type Props = {
 
 export const Countdown = ({ onCompleteCountdown }: Props) => {
   const { cycleInProgress } = useCycles();
-  const [elapsedSeconds, setElapsedSeconds] = useState(0);
+  const [elapsedSeconds, setElapsedSeconds] = useState((): number => {
+    if (cycleInProgress) {
+      return differenceInSeconds(new Date(), cycleInProgress.startDate);
+    }
+
+    return 0;
+  });
   const totalSeconds = cycleInProgress ? cycleInProgress.duration * 60 : 0;
   const remainingSeconds = cycleInProgress ? totalSeconds - elapsedSeconds : 0;
 
@@ -28,17 +34,18 @@ export const Countdown = ({ onCompleteCountdown }: Props) => {
       interval = window.setInterval(() => {
         const newElapsedSeconds = differenceInSeconds(new Date(), cycleInProgress.startDate);
 
-        if (newElapsedSeconds === totalSeconds) {
+        if (newElapsedSeconds >= totalSeconds) {
           onCompleteCountdown();
         } else {
           setElapsedSeconds(newElapsedSeconds);
         }
       }, 1000);
+    } else {
+      setElapsedSeconds(0);
     }
 
     return () => {
       window.clearInterval(interval);
-      setElapsedSeconds(0);
     };
   }, [cycleInProgress]);
 
