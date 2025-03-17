@@ -26,6 +26,7 @@ export const TableContainer = styled.div`
   height: 100%;
   max-height: 28.75rem;
   padding-right: 10px;
+  padding-bottom: 10px;
 
   overflow: auto;
 

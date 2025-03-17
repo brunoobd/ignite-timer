@@ -30,16 +30,21 @@ export const Countdown = ({ onCompleteCountdown }: Props) => {
   useEffect(() => {
     let interval: number;
 
-    if (cycleInProgress) {
-      interval = window.setInterval(() => {
-        const newElapsedSeconds = differenceInSeconds(new Date(), cycleInProgress.startDate);
+    const updateElapsedSeconds = () => {
+      const newElapsedSeconds = differenceInSeconds(new Date(), cycleInProgress!.startDate);
 
-        if (newElapsedSeconds >= totalSeconds) {
-          onCompleteCountdown();
-        } else {
-          setElapsedSeconds(newElapsedSeconds);
-        }
-      }, 1000);
+      if (newElapsedSeconds >= totalSeconds) {
+        onCompleteCountdown();
+        return;
+      }
+
+      setElapsedSeconds(newElapsedSeconds);
+    };
+
+    if (cycleInProgress) {
+      updateElapsedSeconds();
+
+      interval = window.setInterval(updateElapsedSeconds, 1000);
     } else {
       setElapsedSeconds(0);
     }

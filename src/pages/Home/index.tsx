@@ -138,7 +138,9 @@ export const Home = () => {
 
         <InputLabel htmlFor={durationInputId}>durante</InputLabel>
         <DurationInputContainer>
-          <DurationInputActionItem onClick={handleDurationInputDecrement}>
+          <DurationInputActionItem
+            onClick={handleDurationInputDecrement}
+            disabled={hasCycleInProgress}>
             <MinusIcon />
           </DurationInputActionItem>
 
@@ -159,7 +161,9 @@ export const Home = () => {
             disabled={hasCycleInProgress}
           />
 
-          <DurationInputActionItem onClick={handleDurationInputIncrement}>
+          <DurationInputActionItem
+            onClick={handleDurationInputIncrement}
+            disabled={hasCycleInProgress}>
             <PlusIcon />
           </DurationInputActionItem>
         </DurationInputContainer>

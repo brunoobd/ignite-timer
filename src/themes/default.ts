@@ -30,7 +30,9 @@ export const defaultTheme = {
     MD: "1rem",
     LG: "1.125rem",
     XLG: "1.5rem",
-    XXLG: "10rem",
+    XXLG: "3rem",
+    XXXLG: "5rem",
+    XXXXLG: "10rem",
   },
   FONT_WEIGHT: {
     REGULAR: 400,

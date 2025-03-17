@@ -16,6 +16,7 @@ export const InputContainer = styled.div`
   width: 100%;
 
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 0.5rem;
 `;
@@ -149,6 +150,10 @@ export const DurationInput = styled.input.attrs(() => ({
     font-weight: ${theme.FONT_WEIGHT.BOLD};
     font-size: ${theme.FONT_SIZE.LG};
   `};
+
+  &:disabled:hover {
+    cursor: not-allowed;
+  }
 `;
 
 export const DurationInputActionItem = styled.button.attrs(() => ({
@@ -166,9 +171,13 @@ export const DurationInputActionItem = styled.button.attrs(() => ({
   ${({ theme }) => css`
     color: ${theme.COLORS.GRAY_500};
 
-    &:hover {
+    &:not(:disabled):hover {
       color: ${theme.COLORS.GRAY_100};
       cursor: pointer;
+    }
+
+    &:disabled:hover {
+      cursor: not-allowed;
     }
   `}
 `;
